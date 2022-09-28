@@ -1,31 +1,27 @@
 <mat-toolbar color="primary">
-  <span>
-    <a
-      routerLink="/"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-      mat-button
-      >Тестовое задание</a
-    >
-  </span>
-  <span>
-    <a
-      routerLink="/editor"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-      mat-button
-      >Редактор</a
-    >
-  </span>
-  <span>
-    <a
-      routerLink="/viewer"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-      mat-button
-      >Просмотр</a
-    >
-  </span>
+  <a mat-icon-button routerLink="/" ariaCurrentWhenActive="page"
+    ><mat-icon>home</mat-icon></a
+  >
+  <a
+    mat-button
+    routerLink="/editor"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Редактор</a
+  >
+  <a
+    mat-button
+    routerLink="/viewer"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Просмотр</a
+  >
+  <a
+    mat-icon-button
+    id="language"
+    (click)="changeLang(language == 'ru' ? 'en' : 'ru')"
+    ><mat-icon>language</mat-icon></a
+  >
 </mat-toolbar>
 
 <router-outlet></router-outlet>

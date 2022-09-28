@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

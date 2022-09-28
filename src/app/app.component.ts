@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'axiomatika-zezin';
+export class AppComponent implements OnInit {
+  public language = '';
+
+  ngOnInit(): void {
+    this.language = localStorage.getItem('lang') || 'ru';
+  }
+
+  changeLang(lang: string): void {
+    this.language = lang;
+    localStorage.setItem('lang', lang);
+  }
 }

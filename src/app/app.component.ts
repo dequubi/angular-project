@@ -9,7 +9,7 @@ export class AppComponent implements OnInit {
   public language = '';
 
   ngOnInit(): void {
-    this.language = localStorage.getItem('lang') || 'ru';
+    this.language = localStorage.getItem('lang') || 'ru-RU';
   }
 
   changeLang(lang: string): void {

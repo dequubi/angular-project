@@ -1,1 +1,35 @@
-<p>dialog works!</p>
+<h1 mat-dialog-title>Добавление элемента</h1>
+<div mat-dialog-content>
+  <form [formGroup]="elementForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Название</mat-label>
+      <input formControlName="elName" matInput required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Описание</mat-label>
+      <textarea formControlName="elDesc" matInput></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Дата окончания</mat-label>
+      <input
+        formControlName="elDate"
+        matInput
+        [matDatepicker]="picker"
+        required
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="time">
+      <mat-label>Время окончания</mat-label>
+      <input formControlName="elTime" matInput type="time" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-flat-button mat-dialog-close>Закрыть</button>
+  <button mat-flat-button color="primary" (click)="addElement()">
+    Добавить
+  </button>
+</div>

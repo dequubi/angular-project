@@ -1,4 +1,76 @@
-<p>editor works!</p>
-<button mat-raised-button color="primary" (click)="openDialog()">
-  Добавить элемент
-</button>
+<div class="container">
+  <div class="interact">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openDialog()"
+      class="button-add"
+    >
+      Добавить элемент
+    </button>
+    <mat-form-field appearance="standard">
+      <mat-label>Фильтр</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input />
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>№</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Название</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Описание</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateStart">
+      <th mat-header-cell *matHeaderCellDef>Дата начала</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateStart | date: "MMM dd, YYYY, HH:mm" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateEnd">
+      <th mat-header-cell *matHeaderCellDef>Дата окончания</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateEnd | date: "MMM dd, YYYY, HH:mm" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="action">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="duplicateElement(element)"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteElement(element.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        Не найдено элементов с "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+</div>

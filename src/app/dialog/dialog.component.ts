@@ -19,10 +19,10 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.elementForm = this.formBuilder.group({
-      elName: ['', Validators.required],
-      elDesc: [''],
-      elDate: ['', Validators.required],
-      elTime: [''],
+      name: ['', Validators.required],
+      description: [''],
+      dateEnd: ['', Validators.required],
+      time: [''],
     });
   }
 
@@ -32,7 +32,7 @@ export class DialogComponent implements OnInit {
         next: (res) => {
           console.log('Element added');
           this.elementForm.reset();
-          this.dialogRef.close();
+          this.dialogRef.close('add');
         },
         error: () => {
           console.log('Error while adding the product.');

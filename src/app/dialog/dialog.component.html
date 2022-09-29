@@ -3,16 +3,16 @@
   <form [formGroup]="elementForm">
     <mat-form-field appearance="fill">
       <mat-label>Название</mat-label>
-      <input formControlName="elName" matInput required />
+      <input formControlName="name" matInput required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Описание</mat-label>
-      <textarea formControlName="elDesc" matInput></textarea>
+      <textarea formControlName="description" matInput></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Дата окончания</mat-label>
       <input
-        formControlName="elDate"
+        formControlName="dateEnd"
         matInput
         [matDatepicker]="picker"
         required
@@ -23,7 +23,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill" class="time">
       <mat-label>Время окончания</mat-label>
-      <input formControlName="elTime" matInput type="time" />
+      <input formControlName="time" matInput type="time" />
     </mat-form-field>
   </form>
 </div>

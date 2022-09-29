@@ -8,14 +8,13 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   postElement(data: any) {
-    let time = data.elTime.split(':');
-    if (time[0] == '') time = ['00', '00'];
-    const date = new Date(data.elDate);
+    const time = data.time ? data.time.split(':') : ['00', '00'];
+    const date = new Date(data.dateEnd);
     date.setHours(time[0]);
     date.setMinutes(time[1]);
     const element = {
-      name: data.elName,
-      description: data.elDesc,
+      name: data.name,
+      description: data.description,
       dateStart: new Date(Date.now()),
       dateEnd: date,
     };
@@ -23,5 +22,8 @@ export class ApiService {
   }
   getElements() {
     return this.http.get<any>('http://localhost:3000/elements');
+  }
+  deleteElement(id: number) {
+    return this.http.delete<any>('http://localhost:3000/elements/' + id);
   }
 }

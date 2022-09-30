@@ -5,7 +5,7 @@
       <input matInput (keyup)="applyFilter()" [(ngModel)]="filterText" />
       <mat-icon matSuffix>filter_alt</mat-icon>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="daterange">
+    <mat-form-field appearance="standard" class="daterange">
       <mat-label>Диапазон дат окончания</mat-label>
       <mat-date-range-input [rangePicker]="picker">
         <input

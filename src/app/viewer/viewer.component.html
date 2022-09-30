@@ -1,1 +1,101 @@
-<p>viewer works!</p>
+<div class="container">
+  <div class="interact">
+    <mat-form-field appearance="standard">
+      <mat-label>Название</mat-label>
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="filterText" />
+      <mat-icon matSuffix>filter_alt</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="daterange">
+      <mat-label>Диапазон дат окончания</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input
+          matStartDate
+          placeholder="Начало"
+          [(ngModel)]="filterDateStart"
+        />
+
+        <input
+          matEndDate
+          placeholder="Конец"
+          [(ngModel)]="filterDateEnd"
+          (dateChange)="applyFilter()"
+        />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <button
+      mat-button
+      (click)="
+        filterText = ''; filterDateStart = ''; filterDateEnd = ''; applyFilter()
+      "
+    >
+      Очистить
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>№</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Название</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Описание</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateStart">
+      <th mat-header-cell *matHeaderCellDef>Дата начала</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateStart | date: "MMM dd, YYYY, HH:mm" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateEnd">
+      <th mat-header-cell *matHeaderCellDef>Дата окончания</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateEnd | date: "MMM dd, YYYY, HH:mm" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="action">
+        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!filterText">
+          <mat-icon>reorder</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button
+            mat-menu-item
+            (click)="moveRow(element, 1)"
+            [disabled]="isFirst(element)"
+          >
+            <mat-icon>arrow_upward</mat-icon><span>Переместить вверх</span>
+          </button>
+          <button
+            mat-menu-item
+            (click)="moveRow(element, -1)"
+            [disabled]="isLast(element)"
+          >
+            <mat-icon>arrow_downward</mat-icon><span>Переместить вниз</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4" *ngIf="filterText">
+        Не найдено элементов с "{{ filterText }}"
+      </td>
+    </tr>
+  </table>
+</div>

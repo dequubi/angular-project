@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ApiService } from '../services/api.service';
 
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable } from '@angular/material/table';
+
+import { IElement } from '../models/element';
 
 @Component({
   selector: 'app-editor',
@@ -11,6 +13,9 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
+  @ViewChild(MatTable) table!: MatTable<IElement>;
+  dataSource!: IElement[];
+
   displayedColumns: string[] = [
     'id',
     'name',
@@ -19,7 +24,6 @@ export class EditorComponent implements OnInit {
     'dateEnd',
     'action',
   ];
-  dataSource!: MatTableDataSource<any>;
 
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
@@ -30,7 +34,7 @@ export class EditorComponent implements OnInit {
   openDialog() {
     this.dialog
       .open(DialogComponent, {
-        width: '30%',
+        width: '40%',
       })
       .afterClosed()
       .subscribe((msg) => {
@@ -41,7 +45,7 @@ export class EditorComponent implements OnInit {
   getElements() {
     this.api.getElements().subscribe({
       next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
+        this.dataSource = res;
       },
       error: (err) => {
         console.log(err);
@@ -49,12 +53,7 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  duplicateElement(element: any) {
+  duplicateElement(element: IElement) {
     this.api.postElement(element).subscribe({
       next: (res) => {
         console.log('Success');

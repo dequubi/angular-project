@@ -6,6 +6,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+  // #707070 как у Material Icon
   filter: invert(40%) sepia(29%) saturate(0%) hue-rotate(151deg)
     brightness(100%) contrast(86%);
   &:hover {

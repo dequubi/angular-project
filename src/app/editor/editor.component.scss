@@ -3,15 +3,9 @@
   flex-direction: column;
   align-items: center;
   .interact {
-    display: flex;
+    margin: 15px 0;
     width: 80%;
     max-width: 1024px;
-    justify-content: space-between;
-    align-items: center;
-
-    .button-add {
-      height: 36px;
-    }
   }
   table {
     width: 80%;

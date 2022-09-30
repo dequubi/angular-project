@@ -1,13 +1,22 @@
-<h1 mat-dialog-title>Добавление элемента</h1>
+<h1 mat-dialog-title>{{ data ? "Просмотр" : "Добавление" }} элемента</h1>
 <div mat-dialog-content>
   <form [formGroup]="elementForm">
     <mat-form-field appearance="fill">
       <mat-label>Название</mat-label>
-      <input formControlName="name" matInput required />
+      <input
+        formControlName="name"
+        matInput
+        [required]="!!!data"
+        [readonly]="!!data"
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Описание</mat-label>
-      <textarea formControlName="description" matInput></textarea>
+      <textarea
+        formControlName="description"
+        matInput
+        [readonly]="!!data"
+      ></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Дата окончания</mat-label>
@@ -15,21 +24,30 @@
         formControlName="dateEnd"
         matInput
         [matDatepicker]="picker"
-        required
+        [required]="!!!data"
+        [readonly]="!!data"
       />
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"
+        [disabled]="!!data"
+      ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="fill" class="time">
       <mat-label>Время окончания</mat-label>
-      <input formControlName="time" matInput type="time" />
+      <input formControlName="time" matInput type="time" [readonly]="!!data" />
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-flat-button mat-dialog-close>Закрыть</button>
-  <button mat-flat-button color="primary" (click)="addElement()">
+  <button
+    mat-flat-button
+    color="primary"
+    *ngIf="!!!data"
+    (click)="addElement()"
+  >
     Добавить
   </button>
 </div>

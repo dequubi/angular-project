@@ -4,6 +4,7 @@ import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 
+import { DialogComponent } from '../dialog/dialog.component';
 import { IElement } from '../models/element';
 
 @Component({
@@ -28,7 +29,21 @@ export class ViewerComponent implements OnInit {
     'action',
   ];
 
-  constructor(private api: ApiService) {}
+  constructor(public dialog: MatDialog, private api: ApiService) {}
+
+  openDialog(e: any, row: IElement): void {
+    if (e.target.tagName !== 'TD') return;
+    console.log(row);
+    this.dialog
+      .open(DialogComponent, {
+        width: '40%',
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((msg) => {
+        if (msg === 'add') this.getElements();
+      });
+  }
 
   moveRow(e: IElement, dir: number): void {
     const i = this.dataSource.findIndex((d) => d.id === e.id);

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ru" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="hb_editor" datatype="html">
+        <source>Редактор</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Header button Editor</note>
+      </trans-unit>
+      <trans-unit id="hb_viewer" datatype="html">
+        <source>Просмотр</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">Header button Viewer</note>
+      </trans-unit>
+      <trans-unit id="header_viewElement" datatype="html">
+        <source> Просмотр элемента
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+        <note priority="1" from="description">View element header</note>
+      </trans-unit>
+      <trans-unit id="header_addElement" datatype="html">
+        <source>Добавление элемента</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Add element header</note>
+      </trans-unit>
+      <trans-unit id="tb_name" datatype="html">
+        <source>Название</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/editor/editor.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">49,51</context>
+        </context-group>
+        <note priority="1" from="description">Name</note>
+      </trans-unit>
+      <trans-unit id="tb_description" datatype="html">
+        <source>Описание</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/editor/editor.component.html</context>
+          <context context-type="linenumber">32,34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">60,62</context>
+        </context-group>
+        <note priority="1" from="description">Description</note>
+      </trans-unit>
+      <trans-unit id="tb_dateEnd" datatype="html">
+        <source>Дата окончания</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/editor/editor.component.html</context>
+          <context context-type="linenumber">56,58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">84,86</context>
+        </context-group>
+        <note priority="1" from="description">End date label </note>
+      </trans-unit>
+      <trans-unit id="label_endTime" datatype="html">
+        <source>Время окончания</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <note priority="1" from="description">End time label </note>
+      </trans-unit>
+      <trans-unit id="btn_close" datatype="html">
+        <source> Закрыть </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">58,60</context>
+        </context-group>
+        <note priority="1" from="description">Close</note>
+      </trans-unit>
+      <trans-unit id="btn_add" datatype="html">
+        <source> Добавить </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
+          <context context-type="linenumber">67,69</context>
+        </context-group>
+        <note priority="1" from="description">Add</note>
+      </trans-unit>
+      <trans-unit id="btn_addElement" datatype="html">
+        <source> Добавить элемент </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/editor/editor.component.html</context>
+          <context context-type="linenumber">9,11</context>
+        </context-group>
+        <note priority="1" from="description">Add element button</note>
+      </trans-unit>
+      <trans-unit id="tb_id" datatype="html">
+        <source>№</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/editor/editor.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <note priority="1" from="description">Table id column</note>
+      </trans-unit>
+      <trans-unit id="tb_dateStart" datatype="html">
+        <source> Дата начала </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/editor/editor.component.html</context>
+          <context context-type="linenumber">43,45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">71,73</context>
+        </context-group>
+        <note priority="1" from="description">Table start date column</note>
+      </trans-unit>
+      <trans-unit id="label_name" datatype="html">
+        <source>Название</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Name label</note>
+      </trans-unit>
+      <trans-unit id="label_endDateRange" datatype="html">
+        <source>Диапазон дат окончания</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">End date range label</note>
+      </trans-unit>
+      <trans-unit id="6577926103809425629" datatype="html">
+        <source>Начало</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5066799583718868885" datatype="html">
+        <source>Конец</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn_clear" datatype="html">
+        <source> Очистить </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">37,39</context>
+        </context-group>
+        <note priority="1" from="description">Clear</note>
+      </trans-unit>
+      <trans-unit id="btn_moveUp" datatype="html">
+        <source>Переместить вверх</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <note priority="1" from="description">Move up prompt</note>
+      </trans-unit>
+      <trans-unit id="btn_moveDown" datatype="html">
+        <source>Переместить вниз</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <note priority="1" from="description">Move down prompt</note>
+      </trans-unit>
+      <trans-unit id="filter_noResults" datatype="html">
+        <source> Результаты отсутствуют </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
+          <context context-type="linenumber">132,134</context>
+        </context-group>
+        <note priority="1" from="description">No results found</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

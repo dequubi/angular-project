@@ -1,8 +1,18 @@
-<h1 mat-dialog-title>{{ data ? "Просмотр" : "Добавление" }} элемента</h1>
+<h1 mat-dialog-title>
+  <ng-container
+    *ngIf="data; else elseBlock"
+    i18n="View element header@@header_viewElement"
+  >
+    Просмотр элемента
+  </ng-container>
+  <ng-template #elseBlock i18n="Add element header@@header_addElement"
+    >Добавление элемента</ng-template
+  >
+</h1>
 <div mat-dialog-content>
   <form [formGroup]="elementForm">
     <mat-form-field appearance="fill">
-      <mat-label>Название</mat-label>
+      <mat-label i18n="Name@@tb_name">Название</mat-label>
       <input
         formControlName="name"
         matInput
@@ -11,7 +21,7 @@
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Описание</mat-label>
+      <mat-label i18n="Description@@tb_description">Описание</mat-label>
       <textarea
         formControlName="description"
         matInput
@@ -19,7 +29,7 @@
       ></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Дата окончания</mat-label>
+      <mat-label i18n="End date label @@tb_dateEnd">Дата окончания</mat-label>
       <input
         formControlName="dateEnd"
         matInput
@@ -35,18 +45,23 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="fill" class="time">
-      <mat-label>Время окончания</mat-label>
+      <mat-label i18n="End time label @@label_endTime"
+        >Время окончания</mat-label
+      >
       <input formControlName="time" matInput type="time" [readonly]="!!data" />
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
-  <button mat-flat-button mat-dialog-close>Закрыть</button>
+  <button mat-flat-button mat-dialog-close i18n="Close@@btn_close">
+    Закрыть
+  </button>
   <button
     mat-flat-button
     color="primary"
     *ngIf="!!!data"
     (click)="addElement()"
+    i18n="Add@@btn_add"
   >
     Добавить
   </button>

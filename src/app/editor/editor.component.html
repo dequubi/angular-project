@@ -5,6 +5,7 @@
       color="primary"
       (click)="openDialog()"
       class="button-add"
+      i18n="Add element button@@btn_addElement"
     >
       Добавить элемент
     </button>
@@ -12,29 +13,49 @@
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>№</th>
+      <th mat-header-cell *matHeaderCellDef i18n="Table id column@@tb_id">№</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Название</th>
+      <th mat-header-cell *matHeaderCellDef i18n="Table name column@@tb_name">
+        Название
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Описание</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        i18n="Table description column@@tb_description"
+      >
+        Описание
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.description }}</td>
     </ng-container>
 
     <ng-container matColumnDef="dateStart">
-      <th mat-header-cell *matHeaderCellDef>Дата начала</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        i18n="Table start date column@@tb_dateStart"
+      >
+        Дата начала
+      </th>
       <td mat-cell *matCellDef="let element">
         {{ element.dateStart | date: "MMM dd, YYYY, HH:mm" }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="dateEnd">
-      <th mat-header-cell *matHeaderCellDef>Дата окончания</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        i18n="Table end date column@@tb_dateEnd"
+      >
+        Дата окончания
+      </th>
       <td mat-cell *matCellDef="let element">
         {{ element.dateEnd | date: "MMM dd, YYYY, HH:mm" }}
       </td>

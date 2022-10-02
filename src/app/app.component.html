@@ -7,6 +7,7 @@
     routerLink="/editor"
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
+    i18n="Header button Editor@@hb_editor"
     >Редактор</a
   >
   <a
@@ -14,12 +15,13 @@
     routerLink="/viewer"
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
+    i18n="Header button Viewer@@hb_viewer"
     >Просмотр</a
   >
   <a
     mat-icon-button
     id="language"
-    (click)="changeLang(language == 'ru-RU' ? 'en-US' : 'ru-RU')"
+    (click)="changeLang(language == 'ru' ? 'en-US' : 'ru')"
     ><mat-icon>language</mat-icon></a
   >
 </mat-toolbar>

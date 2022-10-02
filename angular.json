@@ -13,20 +13,23 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "ru",
+        "locales": {
+          "en-US": "src/i18n/messages.en-US.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/axiomatika-zezin",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
@@ -34,6 +37,9 @@
             "scripts": []
           },
           "configurations": {
+            "en-US": {
+              "localize": ["en-US"]
+            },
             "production": {
               "budgets": [
                 {
@@ -74,6 +80,9 @@
             },
             "development": {
               "browserTarget": "axiomatika-zezin:build:development"
+            },
+            "en-US": {
+              "browserTarget": "axiomatika-zezin:build:en-US"
             }
           },
           "defaultConfiguration": "development"
@@ -92,10 +101,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"

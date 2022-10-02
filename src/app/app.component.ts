@@ -6,14 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public language!: string;
-
-  ngOnInit(): void {
-    this.language = localStorage.getItem('lang') || 'ru';
-  }
-
-  changeLang(lang: string): void {
-    this.language = lang;
-    localStorage.setItem('lang', lang);
-  }
+  ngOnInit(): void {}
 }

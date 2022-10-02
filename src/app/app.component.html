@@ -18,12 +18,13 @@
     i18n="Header button Viewer@@hb_viewer"
     >Просмотр</a
   >
-  <a
-    mat-icon-button
-    id="language"
-    (click)="changeLang(language == 'ru' ? 'en-US' : 'ru')"
-    ><mat-icon>language</mat-icon></a
-  >
+  <a mat-icon-button id="language" [matMenuTriggerFor]="menuLang">
+    <mat-icon>language</mat-icon>
+    <mat-menu #menuLang="matMenu" xPosition="before">
+      <a mat-menu-item href="/ru/"> Русский </a>
+      <a mat-menu-item href="/en-US/"> English </a>
+    </mat-menu>
+  </a>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

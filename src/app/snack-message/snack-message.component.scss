@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  h2 {
+    color: white;
+  }
+
+  p {
+    text-align: center;
+  }
+}

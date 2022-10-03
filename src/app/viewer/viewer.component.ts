@@ -37,8 +37,6 @@ export class ViewerComponent implements OnInit {
     private api: ApiService
   ) {}
 
-  public huh: any;
-
   ngOnInit(): void {
     this.getElements();
 
@@ -74,6 +72,7 @@ export class ViewerComponent implements OnInit {
         this._snackBar.openFromComponent(SnackMessageComponent, {
           data: e,
           duration: 5000,
+          horizontalPosition: 'end',
         });
       });
   }

@@ -27,6 +27,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackMessageComponent } from './snack-message/snack-message.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { MatMenuModule } from '@angular/material/menu';
     HomeComponent,
     PageNotFoundComponent,
     DialogComponent,
+    SnackMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTableModule,
     MatTooltipModule,
     MatMenuModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

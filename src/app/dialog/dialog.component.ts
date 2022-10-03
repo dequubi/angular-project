@@ -24,14 +24,18 @@ export class DialogComponent implements OnInit {
       name: ['', Validators.required],
       description: [''],
       dateEnd: ['', Validators.required],
-      time: [''],
+      time: [''], // по умолчанию будет 00:00
     });
 
+    // Если в диалоговое окно передали data, то
+    // устанавливаю всем полям необходимые значения
     if (this.data) {
       const date = new Date(this.data.dateEnd);
       this.elementForm.controls['name'].setValue(this.data.name);
       this.elementForm.controls['description'].setValue(this.data.description);
       this.elementForm.controls['dateEnd'].setValue(date);
+      // В input type="time" значение можно установить
+      // только в формате HH:MM (H:M, например, нельзя)
       this.elementForm.controls['time'].setValue(
         `${date.getHours().toString().padStart(2, '0')}:${date
           .getMinutes()
@@ -48,8 +52,8 @@ export class DialogComponent implements OnInit {
           this.elementForm.reset();
           this.dialogRef.close('add');
         },
-        error: () => {
-          console.log('Error while adding the product.');
+        error: (err) => {
+          console.log(err);
         },
       });
     }

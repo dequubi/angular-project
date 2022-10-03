@@ -38,6 +38,7 @@ export class EditorComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((msg) => {
+        // Если был добавлен новый элемент, то запросить все элементы
         if (msg === 'add') this.getElements();
       });
   }
@@ -56,7 +57,6 @@ export class EditorComponent implements OnInit {
   duplicateElement(element: IElement) {
     this.api.postElement(element).subscribe({
       next: (res) => {
-        console.log('Success');
         this.getElements();
       },
       error: (err) => {

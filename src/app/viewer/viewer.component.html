@@ -28,13 +28,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
-    <button
-      mat-button
-      (click)="
-        filterText = ''; filterDateStart = ''; filterDateEnd = ''; applyFilter()
-      "
-      i18n="Clear@@btn_clear"
-    >
+    <button mat-button (click)="clearFilter()" i18n="Clear@@btn_clear">
       Очистить
     </button>
   </div>

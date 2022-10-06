@@ -142,4 +142,11 @@ export class ViewerComponent implements OnInit {
 
     this.table.renderRows();
   }
+
+  clearFilter(): void {
+    this.filterText = '';
+    this.filterDateStart = '';
+    this.filterDateEnd = '';
+    this.dataSource = this.originalDataSource;
+  }
 }

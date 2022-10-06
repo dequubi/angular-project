@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +11,12 @@ export class ApiService {
   postElement(data: any) {
     // Приведение даты выполнения к необходимому формату
     const time = data.time ? data.time.split(':') : ['00', '00'];
-    const date = new Date(data.dateEnd);
-    date.setHours(time[0]);
-    date.setMinutes(time[1]);
+    const date = moment(data.dateEnd).hours(time[0]).minutes(time[1]);
+
     const element = {
       name: data.name,
       description: data.description,
-      dateStart: new Date(Date.now()),
+      dateStart: moment(),
       dateEnd: date,
     };
     return this.http.post<any>('http://localhost:3000/elements', element);

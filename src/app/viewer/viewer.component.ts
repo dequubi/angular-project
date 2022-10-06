@@ -9,6 +9,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { SnackMessageComponent } from '../snack-message/snack-message.component';
 import { IElement } from '../models/element';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
@@ -50,8 +52,7 @@ export class ViewerComponent implements OnInit {
     // а запоминать состояния таймаутов, похоже, возможно
     // только через родительский компонент.
 
-    const nextMinute = new Date();
-    nextMinute.setMinutes(nextMinute.getMinutes() + 1, 0);
+    const nextMinute = moment().add(1, 'minutes').seconds(0);
 
     setTimeout(() => {
       // setInterval начнет работать через минуту, поэтому
@@ -60,14 +61,14 @@ export class ViewerComponent implements OnInit {
       setInterval(() => {
         this.elementNotificationCheck();
       }, 60000);
-    }, nextMinute.getTime() - Date.now());
+    }, nextMinute.diff(moment(), 'milliseconds'));
   }
 
   elementNotificationCheck(): void {
     if (!this.originalDataSource) return;
-    const today = new Date();
+    const today = moment();
     this.originalDataSource
-      .filter((e) => new Date(e.dateEnd).toString() === today.toString())
+      .filter((e) => today.milliseconds(0).isSame(e.dateEnd))
       .map((e) => {
         this._snackBar.openFromComponent(SnackMessageComponent, {
           data: e,
@@ -132,8 +133,7 @@ export class ViewerComponent implements OnInit {
       if (this.filterDateEnd) {
         return (
           e.name.toLowerCase().includes(this.filterText.toLowerCase()) &&
-          new Date(e.dateEnd) < new Date(this.filterDateEnd) &&
-          new Date(e.dateEnd) > new Date(this.filterDateStart)
+          moment(e.dateEnd).isBetween(this.filterDateStart, this.filterDateEnd)
         );
       } else {
         return e.name.toLowerCase().includes(this.filterText.toLowerCase());

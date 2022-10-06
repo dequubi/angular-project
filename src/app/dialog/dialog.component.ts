@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IElement } from '../models/element';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dialog',
@@ -30,18 +31,13 @@ export class DialogComponent implements OnInit {
     // Если в диалоговое окно передали data, то
     // устанавливаю всем полям необходимые значения
     if (this.data) {
-      const date = new Date(this.data.dateEnd);
+      const date = moment(this.data.dateEnd);
       this.elementForm.controls['name'].setValue(this.data.name);
       this.elementForm.controls['description'].setValue(this.data.description);
       this.elementForm.controls['dateEnd'].setValue(date);
       // В input type="time" значение можно установить
       // только в формате HH:MM (H:M, например, нельзя)
-      this.elementForm.controls['time'].setValue(
-        `${date.getHours().toString().padStart(2, '0')}:${date
-          .getMinutes()
-          .toString()
-          .padStart(2, '0')}`
-      );
+      this.elementForm.controls['time'].setValue(date.format('HH:mm'));
     }
   }
 

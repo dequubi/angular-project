@@ -50,7 +50,7 @@ export class DialogComponent implements OnInit {
       this.api.postElement(this.elementForm.value).subscribe({
         next: (res) => {
           this.elementForm.reset();
-          this.dialogRef.close('add');
+          this.dialogRef.close(res);
         },
         error: (err) => {
           console.log(err);

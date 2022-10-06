@@ -37,9 +37,8 @@ export class EditorComponent implements OnInit {
         width: '40%',
       })
       .afterClosed()
-      .subscribe((msg) => {
-        // Если был добавлен новый элемент, то запросить все элементы
-        if (msg === 'add') this.getElements();
+      .subscribe((element) => {
+        this.dataSource = [...this.dataSource, element];
       });
   }
 
@@ -57,7 +56,9 @@ export class EditorComponent implements OnInit {
   duplicateElement(element: IElement) {
     this.api.postElement(element).subscribe({
       next: (res) => {
-        this.getElements();
+        // this.dataSource.push(res) почему-то не обновляет view,
+        // поэтому пришлось так
+        this.dataSource = [...this.dataSource, res];
       },
       error: (err) => {
         console.log(err);
@@ -68,7 +69,7 @@ export class EditorComponent implements OnInit {
   deleteElement(id: number) {
     this.api.deleteElement(id).subscribe({
       next: (res) => {
-        this.getElements();
+        this.dataSource = this.dataSource.filter((e) => e.id !== id);
       },
     });
   }

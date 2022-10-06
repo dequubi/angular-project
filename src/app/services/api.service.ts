@@ -8,7 +8,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   postElement(data: any) {
-    // Приведение даты окончания к необходимому формату
+    // Приведение даты выполнения к необходимому формату
     const time = data.time ? data.time.split(':') : ['00', '00'];
     const date = new Date(data.dateEnd);
     date.setHours(time[0]);

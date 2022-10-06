@@ -29,7 +29,9 @@
       ></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label i18n="End date label @@tb_dateEnd">Дата окончания</mat-label>
+      <mat-label i18n="Table execution date column@@tb_dateExecute"
+        >Дата выполнения</mat-label
+      >
       <input
         formControlName="dateEnd"
         matInput
@@ -45,8 +47,8 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="fill" class="time">
-      <mat-label i18n="End time label @@label_endTime"
-        >Время окончания</mat-label
+      <mat-label i18n="Execution time label @@label_executeTime"
+        >Время выполнения</mat-label
       >
       <input formControlName="time" matInput type="time" [readonly]="!!data" />
     </mat-form-field>

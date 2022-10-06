@@ -6,8 +6,8 @@
       <mat-icon matSuffix>filter_alt</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="standard">
-      <mat-label i18n="End date range label@@label_endDateRange"
-        >Диапазон дат окончания</mat-label
+      <mat-label i18n="Execution date range label@@label_executeDateRange"
+        >Диапазон дат выполнения</mat-label
       >
       <mat-date-range-input [rangePicker]="picker">
         <input
@@ -67,9 +67,9 @@
       <th
         mat-header-cell
         *matHeaderCellDef
-        i18n="Table start date column@@tb_dateStart"
+        i18n="Table creation date column@@tb_dateCreate"
       >
-        Дата начала
+        Дата создания
       </th>
       <td mat-cell *matCellDef="let element">
         {{ element.dateStart | date: "MMM dd, YYYY, HH:mm" }}
@@ -80,9 +80,9 @@
       <th
         mat-header-cell
         *matHeaderCellDef
-        i18n="Table end date column@@tb_dateEnd"
+        i18n="Table execution date column@@tb_dateExecute"
       >
-        Дата окончания
+        Дата выполнения
       </th>
       <td mat-cell *matCellDef="let element">
         {{ element.dateEnd | date: "MMM dd, YYYY, HH:mm" }}

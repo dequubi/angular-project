@@ -66,11 +66,11 @@
         </context-group>
         <note priority="1" from="description">Description</note>
       </trans-unit>
-      <trans-unit id="tb_dateEnd" datatype="html">
-        <source>Дата окончания</source>
+      <trans-unit id="tb_dateExecute" datatype="html">
+        <source>Дата выполнения</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/editor/editor.component.html</context>
@@ -80,21 +80,21 @@
           <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
           <context context-type="linenumber">84,86</context>
         </context-group>
-        <note priority="1" from="description">End date label </note>
+        <note priority="1" from="description">Table execution date column</note>
       </trans-unit>
-      <trans-unit id="label_endTime" datatype="html">
-        <source>Время окончания</source>
+      <trans-unit id="label_executeTime" datatype="html">
+        <source>Время выполнения</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">51</context>
         </context-group>
-        <note priority="1" from="description">End time label </note>
+        <note priority="1" from="description">Execution time label </note>
       </trans-unit>
       <trans-unit id="btn_close" datatype="html">
         <source> Закрыть </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
-          <context context-type="linenumber">56,58</context>
+          <context context-type="linenumber">58,60</context>
         </context-group>
         <note priority="1" from="description">Close</note>
       </trans-unit>
@@ -102,7 +102,7 @@
         <source> Добавить </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/dialog.component.html</context>
-          <context context-type="linenumber">65,67</context>
+          <context context-type="linenumber">67,69</context>
         </context-group>
         <note priority="1" from="description">Add</note>
       </trans-unit>
@@ -126,8 +126,8 @@
         </context-group>
         <note priority="1" from="description">Table id column</note>
       </trans-unit>
-      <trans-unit id="tb_dateStart" datatype="html">
-        <source> Дата начала </source>
+      <trans-unit id="tb_dateCreate" datatype="html">
+        <source> Дата создания </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/editor/editor.component.html</context>
           <context context-type="linenumber">43,45</context>
@@ -136,15 +136,15 @@
           <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
           <context context-type="linenumber">71,73</context>
         </context-group>
-        <note priority="1" from="description">Table start date column</note>
+        <note priority="1" from="description">Table creation date column</note>
       </trans-unit>
-      <trans-unit id="endDateNotification" datatype="html">
-        <source> Достигнута дата окончания </source>
+      <trans-unit id="executeDateNotification" datatype="html">
+        <source> Достигнута дата выполнения </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/snack-message/snack-message.component.html</context>
           <context context-type="linenumber">3,5</context>
         </context-group>
-        <note priority="1" from="description">End date notification</note>
+        <note priority="1" from="description">Execution date notification</note>
       </trans-unit>
       <trans-unit id="label_name" datatype="html">
         <source>Название</source>
@@ -154,13 +154,13 @@
         </context-group>
         <note priority="1" from="description">Name label</note>
       </trans-unit>
-      <trans-unit id="label_endDateRange" datatype="html">
-        <source>Диапазон дат окончания</source>
+      <trans-unit id="label_executeDateRange" datatype="html">
+        <source>Диапазон дат выполнения</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/viewer/viewer.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
-        <note priority="1" from="description">End date range label</note>
+        <note priority="1" from="description">Execution date range label</note>
       </trans-unit>
       <trans-unit id="6577926103809425629" datatype="html">
         <source>Начало</source>

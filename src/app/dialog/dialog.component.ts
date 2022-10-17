@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IElement } from '../models/element';
+import { IElement, Element } from '../models/element';
 import * as moment from 'moment';
 
 @Component({
@@ -43,7 +43,15 @@ export class DialogComponent implements OnInit {
 
   addElement() {
     if (this.elementForm.valid) {
-      this.api.postElement(this.elementForm.value).subscribe({
+      const form = this.elementForm.value;
+      const element: IElement = new Element(
+        form.name,
+        form.description,
+        form.dateEnd,
+        form.time
+      );
+
+      this.api.postElement(element).subscribe({
         next: (res) => {
           this.elementForm.reset();
           this.dialogRef.close(res);

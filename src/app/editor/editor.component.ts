@@ -5,7 +5,7 @@ import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 
-import { IElement } from '../models/element';
+import { IElement, Element } from '../models/element';
 
 @Component({
   selector: 'app-editor',
@@ -54,7 +54,13 @@ export class EditorComponent implements OnInit {
   }
 
   duplicateElement(element: IElement) {
-    this.api.postElement(element).subscribe({
+    const elementDuplicate: IElement = new Element(
+      element.name,
+      element.description,
+      element.dateEnd
+    );
+
+    this.api.postElement(elementDuplicate).subscribe({
       next: (res) => {
         // this.dataSource.push(res) почему-то не обновляет view,
         // поэтому пришлось так

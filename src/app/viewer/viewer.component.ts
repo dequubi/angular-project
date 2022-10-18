@@ -1,5 +1,13 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ChangeDetectionStrategy,
+  OnDestroy,
+} from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ElementsDataSource } from '../services/elements.datasource';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
@@ -15,14 +23,19 @@ import * as moment from 'moment';
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ViewerComponent implements OnInit {
+export class ViewerComponent implements OnInit, OnDestroy {
   @Input() filterText: string = '';
   @Input() filterDateStart: string = '';
   @Input() filterDateEnd: string = '';
   @ViewChild(MatTable) table!: MatTable<IElement>;
-  dataSource!: IElement[];
-  originalDataSource!: IElement[];
+
+  dataSource!: ElementsDataSource;
+  originalDataSource!: ElementsDataSource;
+
+  notifTimeout!: any;
+  notifInterval!: any;
 
   displayedColumns: string[] = [
     'id',
@@ -40,7 +53,8 @@ export class ViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getElements();
+    this.dataSource = new ElementsDataSource(this.api);
+    this.dataSource.loadElements();
 
     // Для toast уведомлений я решил каждую минуту проверять,
     // есть ли в массиве элемент, у которого дата выполнения
@@ -54,28 +68,31 @@ export class ViewerComponent implements OnInit {
 
     const nextMinute = moment().add(1, 'minutes').seconds(0);
 
-    setTimeout(() => {
+    this.notifTimeout = setTimeout(() => {
       // setInterval начнет работать через минуту, поэтому
       // чтобы проверить и текущую минуту тоже, вызываю функцию здесь.
       this.elementNotificationCheck();
-      setInterval(() => {
+      this.notifInterval = setInterval(() => {
         this.elementNotificationCheck();
       }, 60000);
     }, nextMinute.diff(moment(), 'milliseconds'));
   }
 
+  ngOnDestroy(): void {
+    clearTimeout(this.notifTimeout);
+    clearInterval(this.notifInterval);
+  }
+
   elementNotificationCheck(): void {
-    if (!this.originalDataSource) return;
-    const today = moment();
-    this.originalDataSource
-      .filter((e) => today.milliseconds(0).isSame(e.dateEnd))
-      .map((e) => {
-        this._snackBar.openFromComponent(SnackMessageComponent, {
-          data: e,
-          duration: 5000,
-          horizontalPosition: 'end',
-        });
+    if (this.dataSource.isEmpty()) return;
+
+    this.dataSource.notificationElements().map((e) => {
+      this._snackBar.openFromComponent(SnackMessageComponent, {
+        data: e,
+        duration: 5000,
+        horizontalPosition: 'end',
       });
+    });
   }
 
   openDialog(e: any, row: IElement): void {
@@ -92,36 +109,17 @@ export class ViewerComponent implements OnInit {
   moveRow(e: IElement, dir: number): void {
     // После перемещения id элемента не всегда совпадает
     // с индексом массива, поэтому сначала нахожу индекс
-    const i = this.dataSource.findIndex((d) => d.id === e.id);
-    // Перестановка [a, b] = [b, a]
-    [this.dataSource[i], this.dataSource[i - dir]] = [
-      this.dataSource[i - dir],
-      this.dataSource[i],
-    ];
+    const i = this.dataSource.findIndex(e.id);
+    this.dataSource.swapElements(i, i - dir);
     this.table.renderRows();
   }
 
   isFirst(e: IElement): boolean {
-    return this.dataSource.findIndex((d) => d.id === e.id) === 0;
+    return this.dataSource.isFirst(e.id);
   }
 
   isLast(e: IElement): boolean {
-    return (
-      this.dataSource.findIndex((d) => d.id === e.id) ===
-      this.dataSource.length - 1
-    );
-  }
-
-  getElements(): void {
-    this.api.getElements().subscribe({
-      next: (res) => {
-        this.dataSource = res;
-        this.originalDataSource = res;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    return this.dataSource.isLast(e.id);
   }
 
   // Из-за необходимости добавить перемещение строк пришлось
@@ -129,16 +127,11 @@ export class ViewerComponent implements OnInit {
   // встроенный метод фильтрации. Насколько эффективен/оптимизирован
   // код ниже я не знаю
   applyFilter(): void {
-    this.dataSource = this.originalDataSource.filter((e) => {
-      if (this.filterDateEnd) {
-        return (
-          e.name.toLowerCase().includes(this.filterText.toLowerCase()) &&
-          moment(e.dateEnd).isBetween(this.filterDateStart, this.filterDateEnd)
-        );
-      } else {
-        return e.name.toLowerCase().includes(this.filterText.toLowerCase());
-      }
-    });
+    this.dataSource.filterElements(
+      this.filterText,
+      this.filterDateStart,
+      this.filterDateEnd
+    );
 
     this.table.renderRows();
   }
@@ -147,6 +140,6 @@ export class ViewerComponent implements OnInit {
     this.filterText = '';
     this.filterDateStart = '';
     this.filterDateEnd = '';
-    this.dataSource = this.originalDataSource;
+    this.dataSource.filterElements('');
   }
 }

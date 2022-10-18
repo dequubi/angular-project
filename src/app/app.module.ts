@@ -18,13 +18,11 @@ import { ApiService } from './services/api.service';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackMessageComponent } from './snack-message/snack-message.component';
@@ -48,12 +46,10 @@ import { SnackMessageComponent } from './snack-message/snack-message.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatSelectModule,
     MatDialogModule,
     MatDatepickerModule,
     MatMomentDateModule,
     MatInputModule,
-    MatTableModule,
     MatMenuModule,
     MatSnackBarModule,
   ],

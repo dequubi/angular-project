@@ -1,31 +1,44 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+} from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IElement } from '../models/element';
+import { IElement, Element } from '../models/element';
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent implements OnInit {
   public elementForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private api: ApiService,
     private dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IElement
   ) {}
 
   ngOnInit(): void {
-    this.elementForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      description: [''],
-      dateEnd: ['', Validators.required],
-      time: [''], // по умолчанию будет 00:00
+    this.elementForm = this.formBuilder.nonNullable.group({
+      name: new FormControl<string>('', {
+        validators: Validators.required,
+      }),
+      description: new FormControl<string>(''),
+      dateEnd: new FormControl<string>('', {
+        validators: Validators.required,
+      }),
+      time: new FormControl<string>(''), // по умолчанию будет 00:00
     });
 
     // Если в диалоговое окно передали data, то
@@ -43,15 +56,15 @@ export class DialogComponent implements OnInit {
 
   addElement() {
     if (this.elementForm.valid) {
-      this.api.postElement(this.elementForm.value).subscribe({
-        next: (res) => {
-          this.elementForm.reset();
-          this.dialogRef.close(res);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      const form = this.elementForm.value;
+      const element: IElement = new Element(
+        form.name,
+        form.description,
+        form.dateEnd,
+        form.time
+      );
+      this.elementForm.reset();
+      this.dialogRef.close(element);
     }
   }
 }

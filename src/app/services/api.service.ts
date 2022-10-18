@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
+import { Observable } from 'rxjs';
+import { IElement } from '../models/element';
 
 @Injectable({
   providedIn: 'root',
@@ -8,23 +9,13 @@ import * as moment from 'moment';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  postElement(data: any) {
-    // Приведение даты выполнения к необходимому формату
-    const time = data.time ? data.time.split(':') : ['00', '00'];
-    const date = moment(data.dateEnd).hours(time[0]).minutes(time[1]);
-
-    const element = {
-      name: data.name,
-      description: data.description,
-      dateStart: moment(),
-      dateEnd: date,
-    };
-    return this.http.post<any>('http://localhost:3000/elements', element);
+  postElement(element: IElement) {
+    return this.http.post<IElement>('/api/elements', element);
   }
-  getElements() {
-    return this.http.get<any>('http://localhost:3000/elements');
+  getElements(): Observable<IElement[]> {
+    return this.http.get<IElement[]>('/api/elements');
   }
   deleteElement(id: number) {
-    return this.http.delete<any>('http://localhost:3000/elements/' + id);
+    return this.http.delete<any>('/api/elements/' + id);
   }
 }

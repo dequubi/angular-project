@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ApiService } from '../services/api.service';
+import { ElementsDataSource } from '../services/elements.datasource';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 
 import { IElement, Element } from '../models/element';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-editor',
@@ -14,7 +16,7 @@ import { IElement, Element } from '../models/element';
 })
 export class EditorComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<IElement>;
-  dataSource!: IElement[];
+  dataSource!: ElementsDataSource;
 
   displayedColumns: string[] = [
     'id',
@@ -28,7 +30,8 @@ export class EditorComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
   ngOnInit(): void {
-    this.getElements();
+    this.dataSource = new ElementsDataSource(this.api);
+    this.dataSource.loadElements();
   }
 
   openDialog() {
@@ -38,19 +41,8 @@ export class EditorComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((element) => {
-        this.dataSource = [...this.dataSource, element];
+        if (element) this.dataSource.addElement(element);
       });
-  }
-
-  getElements() {
-    this.api.getElements().subscribe({
-      next: (res) => {
-        this.dataSource = res;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
   }
 
   duplicateElement(element: IElement) {
@@ -59,24 +51,10 @@ export class EditorComponent implements OnInit {
       element.description,
       element.dateEnd
     );
-
-    this.api.postElement(elementDuplicate).subscribe({
-      next: (res) => {
-        // this.dataSource.push(res) почему-то не обновляет view,
-        // поэтому пришлось так
-        this.dataSource = [...this.dataSource, res];
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.dataSource.addElement(elementDuplicate);
   }
 
   deleteElement(id: number) {
-    this.api.deleteElement(id).subscribe({
-      next: (res) => {
-        this.dataSource = this.dataSource.filter((e) => e.id !== id);
-      },
-    });
+    this.dataSource.deleteElement(id);
   }
 }

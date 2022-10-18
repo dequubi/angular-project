@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DialogComponent } from './dialog/dialog.component';
 
+import { ApiService } from './services/api.service';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -28,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SnackMessageComponent } from './snack-message/snack-message.component';
 
 @NgModule({
@@ -60,8 +63,9 @@ import { SnackMessageComponent } from './snack-message/snack-message.component';
     MatTooltipModule,
     MatMenuModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

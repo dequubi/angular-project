@@ -50,16 +50,9 @@ export class DialogComponent implements OnInit {
         form.dateEnd,
         form.time
       );
-
-      this.api.postElement(element).subscribe({
-        next: (res) => {
-          this.elementForm.reset();
-          this.dialogRef.close(res);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      console.log(moment(form.time, 'HH:mm').minutes());
+      this.elementForm.reset();
+      this.dialogRef.close(element);
     }
   }
 }

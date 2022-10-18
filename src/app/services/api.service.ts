@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IElement } from '../models/element';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class ApiService {
   postElement(element: IElement) {
     return this.http.post<IElement>('http://localhost:3000/elements', element);
   }
-  getElements() {
+  getElements(): Observable<IElement[]> {
     return this.http.get<IElement[]>('http://localhost:3000/elements');
   }
   deleteElement(id: number) {

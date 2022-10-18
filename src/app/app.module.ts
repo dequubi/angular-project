@@ -10,8 +10,6 @@ registerLocaleData(localeEn, 'en-US');
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EditorComponent } from './editor/editor.component';
-import { ViewerComponent } from './viewer/viewer.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DialogComponent } from './dialog/dialog.component';
@@ -27,17 +25,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SnackMessageComponent } from './snack-message/snack-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditorComponent,
-    ViewerComponent,
     HomeComponent,
     PageNotFoundComponent,
     DialogComponent,
@@ -60,10 +54,8 @@ import { SnackMessageComponent } from './snack-message/snack-message.component';
     MatMomentDateModule,
     MatInputModule,
     MatTableModule,
-    MatTooltipModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

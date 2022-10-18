@@ -10,12 +10,12 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   postElement(element: IElement) {
-    return this.http.post<IElement>('http://localhost:3000/elements', element);
+    return this.http.post<IElement>('/api/elements', element);
   }
   getElements(): Observable<IElement[]> {
-    return this.http.get<IElement[]>('http://localhost:3000/elements');
+    return this.http.get<IElement[]>('/api/elements');
   }
   deleteElement(id: number) {
-    return this.http.delete<any>('http://localhost:3000/elements/' + id);
+    return this.http.delete<any>('/api/elements/' + id);
   }
 }
